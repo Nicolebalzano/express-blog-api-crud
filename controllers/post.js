@@ -1,9 +1,15 @@
 
 import { myPosts } from "../data.js";
 
+// INDEX
 const index = (req, res) => {
+    const tagFilter = req.query.tags;
+    let result = myPosts;
+    if(tagFilter !== undefined) {
+        result = myPosts.filter((curPost) => curPost.tags.includes(tagFilter))
+    }
     res.json({
-        data : myPosts,
+        data : result,
     })
 }
 const show = (req, res) => {
