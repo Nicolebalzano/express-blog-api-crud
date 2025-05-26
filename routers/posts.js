@@ -1,21 +1,11 @@
 import express from "express";
 import { myPosts } from "../data.js";
+import postController from "../controllers/post.js"
 const router = express.Router();
-
 // INDEX
-router.get("/", (req, res) => {
-    res.json({
-        data : myPosts,
-    })
-})
+router.get("/", postController.index);
 // SHOW
-router.get("/:id", (req, res) => {
-    const postId = req.params.id;
-  const post = myPosts.find(curPost => curPost.id === parseInt(postId))
-    res.json({
-        data : post,
-    })
-})
+router.get("/:id",  postController.show)
 // // STORE
 // router.get("/", (req, res) => {
 //     res.json({
@@ -29,11 +19,5 @@ router.get("/:id", (req, res) => {
 //     })
 // })
 // // DESTROY
-router.delete("/:id", (req, res) => {
-     const postId = req.params.id;
-  const post = myPosts.filter(curPost => curPost.id !== parseInt(postId))
-    res.json({
-        data : post,
-    })
-})
+router.delete("/:id",  postController.destroy)
 export default router;
