@@ -15,6 +15,12 @@ const index = (req, res) => {
 const show = (req, res) => {
     const postId = req.params.id;
   const post = myPosts.find(curPost => curPost.id === parseInt(postId))
+  if(post === undefined){
+    res.status(404);
+    return res.json({
+        error : "Post non trovato"
+    })
+  }
     res.json({
         data : post,
     })
