@@ -6,12 +6,8 @@ const router = express.Router();
 router.get("/", postController.index);
 // SHOW
 router.get("/:id",  postController.show)
-// // STORE
-// router.get("/", (req, res) => {
-//     res.json({
-        
-//     })
-// })
+// STORE
+router.post("/", postController.store)
 // // UPDATE
 // router.get("/:id", (req, res) => {
 //     res.json({

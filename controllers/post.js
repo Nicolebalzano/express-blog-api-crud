@@ -25,6 +25,16 @@ const show = (req, res) => {
         data : post,
     })
 }
+const store =(req, res) => {
+    const newPost = req.body; 
+   const lastId = myPosts[myPosts.length - 1].id;
+   newPost.id = lastId + 1;
+   myPosts.push(newPost);
+   res.status(201);
+    res.json({
+      data : newPost,
+    })
+}
 const destroy =(req, res) => {
      const postId = req.params.id;
   const index = myPosts.findIndex(curPost => curPost.id === parseInt(postId))
@@ -41,6 +51,7 @@ const destroy =(req, res) => {
     const postController = {
         index,
         show,
-        destroy
+        destroy, 
+        store
     }
     export default postController;
