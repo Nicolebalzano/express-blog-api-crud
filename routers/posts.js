@@ -8,12 +8,8 @@ router.get("/", postController.index);
 router.get("/:id",  postController.show)
 // STORE
 router.post("/", postController.store)
-// // UPDATE
-// router.get("/:id", (req, res) => {
-//     res.json({
-        
-//     })
-// })
+// UPDATE
+router.put("/:id", postController.update)
 // // DESTROY
 router.delete("/:id",  postController.destroy)
 export default router;

@@ -35,6 +35,21 @@ const store =(req, res) => {
       data : newPost,
     })
 }
+const update = (req, res) => {
+ const postId = req.params.id;
+ const updatedPost = req.body;
+ const post = myPosts.find((curPost) => curPost.id === parseInt(postId));
+  if (!post) {
+    return res.status(404).json({ error: "Post non trovato" });
+  }
+post.titolo = updatedPost.titolo;
+post.contenuto = updatedPost.contenuto;
+post.immagine = updatedPost.immagine;
+post.tags = updatedPost.tags;
+ res.json({
+    data :post,
+ })
+}
 const destroy =(req, res) => {
      const postId = req.params.id;
   const index = myPosts.findIndex(curPost => curPost.id === parseInt(postId))
@@ -52,6 +67,7 @@ const destroy =(req, res) => {
         index,
         show,
         destroy, 
-        store
+        store, 
+        update,
     }
     export default postController;
