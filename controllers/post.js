@@ -27,11 +27,16 @@ const show = (req, res) => {
 }
 const destroy =(req, res) => {
      const postId = req.params.id;
-  
-  const post = myPosts.filter(curPost => curPost.id !== parseInt(postId))
-   console.log(post);
-   
-    res.sendStatus(204) }
+  const index = myPosts.findIndex(curPost => curPost.id === parseInt(postId))
+   if(index === -1) {
+    res.status(404);
+  return  res.json({
+        error: "Post non trovato"
+    })
+   }
+   myPosts.splice(index, 1)
+    res.sendStatus(204) 
+}
 
     const postController = {
         index,
